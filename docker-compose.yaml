@@ -1,7 +1,9 @@
 version: "3.8"
 services:
   flask-app:
-    build: ./flask-app
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
      - target: 5500
        published: 5500
@@ -10,3 +12,7 @@ services:
     ports:
      - target: 80
        published: 80
+    volumes:
+    - type: bind
+      source: ./nginx/nginx.conf
+      target: /etc/nginx/nginx.conf
